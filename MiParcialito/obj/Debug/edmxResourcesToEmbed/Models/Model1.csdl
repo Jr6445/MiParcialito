@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SR100919Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cursos">
+    <Key>
+      <PropertyRef Name="cursoID" />
+    </Key>
+    <Property Name="cursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreCurso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idDocente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="docentes" Relationship="Self.FK__cursos__idDocent__398D8EEE" FromRole="cursos" ToRole="docentes" />
+    <NavigationProperty Name="inscripciones" Relationship="Self.FK__inscripci__curso__440B1D61" FromRole="cursos" ToRole="inscripciones" />
+  </EntityType>
+  <EntityType Name="docentes">
+    <Key>
+      <PropertyRef Name="idDocente" />
+    </Key>
+    <Property Name="idDocente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cursos" Relationship="Self.FK__cursos__idDocent__398D8EEE" FromRole="docentes" ToRole="cursos" />
+  </EntityType>
+  <EntityType Name="inscripciones">
+    <Key>
+      <PropertyRef Name="idInscripcion" />
+    </Key>
+    <Property Name="idInscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cursoID" Type="Int32" Nullable="false" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cursos" Relationship="Self.FK__inscripci__curso__440B1D61" FromRole="inscripciones" ToRole="cursos" />
+    <NavigationProperty Name="user" Relationship="Self.FK__inscripci__idUse__44FF419A" FromRole="inscripciones" ToRole="user" />
+  </EntityType>
+  <EntityType Name="roles">
+    <Key>
+      <PropertyRef Name="idRoles" />
+    </Key>
+    <Property Name="idRoles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK__user__idroles__403A8C7D" FromRole="roles" ToRole="user" />
+  </EntityType>
+  <EntityType Name="status">
+    <Key>
+      <PropertyRef Name="idStatus" />
+    </Key>
+    <Property Name="idStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK__user__idStatus__412EB0B6" FromRole="status" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="edad" Type="Int32" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" />
+    <Property Name="idroles" Type="Int32" Nullable="false" />
+    <Property Name="idStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="inscripciones" Relationship="Self.FK__inscripci__idUse__44FF419A" FromRole="user" ToRole="inscripciones" />
+    <NavigationProperty Name="roles" Relationship="Self.FK__user__idroles__403A8C7D" FromRole="user" ToRole="roles" />
+    <NavigationProperty Name="status" Relationship="Self.FK__user__idStatus__412EB0B6" FromRole="user" ToRole="status" />
+  </EntityType>
+  <Association Name="FK__cursos__idDocent__398D8EEE">
+    <End Role="docentes" Type="Self.docentes" Multiplicity="1" />
+    <End Role="cursos" Type="Self.cursos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="docentes">
+        <PropertyRef Name="idDocente" />
+      </Principal>
+      <Dependent Role="cursos">
+        <PropertyRef Name="idDocente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__inscripci__curso__440B1D61">
+    <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
+    <End Role="inscripciones" Type="Self.inscripciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="cursoID" />
+      </Principal>
+      <Dependent Role="inscripciones">
+        <PropertyRef Name="cursoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__inscripci__idUse__44FF419A">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="inscripciones" Type="Self.inscripciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="idUser" />
+      </Principal>
+      <Dependent Role="inscripciones">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user__idroles__403A8C7D">
+    <End Role="roles" Type="Self.roles" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="idRoles" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="idroles" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user__idStatus__412EB0B6">
+    <End Role="status" Type="Self.status" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="idStatus" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="idStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SR100919Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cursos" EntityType="Self.cursos" />
+    <EntitySet Name="docentes" EntityType="Self.docentes" />
+    <EntitySet Name="inscripciones" EntityType="Self.inscripciones" />
+    <EntitySet Name="roles" EntityType="Self.roles" />
+    <EntitySet Name="status" EntityType="Self.status" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <AssociationSet Name="FK__cursos__idDocent__398D8EEE" Association="Self.FK__cursos__idDocent__398D8EEE">
+      <End Role="docentes" EntitySet="docentes" />
+      <End Role="cursos" EntitySet="cursos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__inscripci__curso__440B1D61" Association="Self.FK__inscripci__curso__440B1D61">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="inscripciones" EntitySet="inscripciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__inscripci__idUse__44FF419A" Association="Self.FK__inscripci__idUse__44FF419A">
+      <End Role="user" EntitySet="user" />
+      <End Role="inscripciones" EntitySet="inscripciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user__idroles__403A8C7D" Association="Self.FK__user__idroles__403A8C7D">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user__idStatus__412EB0B6" Association="Self.FK__user__idStatus__412EB0B6">
+      <End Role="status" EntitySet="status" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

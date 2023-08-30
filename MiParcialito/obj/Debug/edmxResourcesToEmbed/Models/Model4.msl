@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SR100919Model1StoreContainer" CdmEntityContainer="SR100919Entities1">
+    <EntitySetMapping Name="cursos">
+      <EntityTypeMapping TypeName="SR100919Model1.cursos">
+        <MappingFragment StoreEntitySet="cursos">
+          <ScalarProperty Name="idDocente" ColumnName="idDocente" />
+          <ScalarProperty Name="nombreCurso" ColumnName="nombreCurso" />
+          <ScalarProperty Name="cursoID" ColumnName="cursoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="docentes">
+      <EntityTypeMapping TypeName="SR100919Model1.docentes">
+        <MappingFragment StoreEntitySet="docentes">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idDocente" ColumnName="idDocente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inscripciones">
+      <EntityTypeMapping TypeName="SR100919Model1.inscripciones">
+        <MappingFragment StoreEntitySet="inscripciones">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="cursoID" ColumnName="cursoID" />
+          <ScalarProperty Name="idInscripcion" ColumnName="idInscripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="SR100919Model1.roles">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idRoles" ColumnName="idRoles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="status">
+      <EntityTypeMapping TypeName="SR100919Model1.status">
+        <MappingFragment StoreEntitySet="status">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="SR100919Model1.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+          <ScalarProperty Name="idroles" ColumnName="idroles" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

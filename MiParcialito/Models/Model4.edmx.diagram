@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb0e9b5cade544539b4f0f67be079b9d" Name="Diagram1">
+        <EntityTypeShape EntityType="SR100919Model1.cursos" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="SR100919Model1.docentes" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="SR100919Model1.inscripciones" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="SR100919Model1.roles" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="SR100919Model1.status" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="SR100919Model1.user" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="SR100919Model1.FK__cursos__idDocent__267ABA7A" />
+        <AssociationConnector Association="SR100919Model1.FK__inscripci__curso__30F848ED" />
+        <AssociationConnector Association="SR100919Model1.FK__inscripci__idUse__31EC6D26" />
+        <AssociationConnector Association="SR100919Model1.FK__user__idroles__2D27B809" />
+        <AssociationConnector Association="SR100919Model1.FK__user__idStatus__2E1BDC42" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

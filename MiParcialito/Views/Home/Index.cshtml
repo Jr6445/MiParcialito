@@ -1,0 +1,33 @@
+﻿@model List<MiParcialito.Models.cursos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="container mt-5">
+    <main>
+        <div class="row">
+            <section class="col-md-12">
+                <h2 class="mb-4">Lista de Cursos Disponibles</h2>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre del Curso</th>
+                            <th>Docente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var curso in Model)
+                        {
+                            <tr>
+                                <td>@curso.nombreCurso</td>
+                                <td>@curso.docentes.nombre</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</div>

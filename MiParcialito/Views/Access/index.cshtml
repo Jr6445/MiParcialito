@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<div class="row">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            Usuario
+            <input type="text" name="user" />
+            Password
+            <input type="password" name="password" />
+            <input type="submit" class="btn btn-success" value="Entrar" />
+
+
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+            var url = "@Url.Action("Login", "Access")"; // Cambia a Url.Action
+            var parametros = $(this).serialize();
+
+            $.post(url, parametros)
+            .done(function (data) {
+                if (data === "1") {
+                    window.location.href = "@Url.Content("~/Home/HomeLog")";  // Redireccionar a la página de inicio
+
+                } else {
+                    alert(data);  // Mostrar mensaje de error
+                }
+            })
+            .fail(function (error) {
+                alert("Ocurrió un error al procesar la solicitud.");  // Mostrar mensaje de error genérico
+            });
+        });
+    });
+    </script>
+}

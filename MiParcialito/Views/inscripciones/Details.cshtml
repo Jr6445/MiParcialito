@@ -1,0 +1,34 @@
+﻿@model MiParcialito.Models.inscripciones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>inscripciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cursos.nombreCurso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cursos.nombreCurso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idInscripcion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
